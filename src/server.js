@@ -23,7 +23,7 @@ const whitelist = [
 const corsOpts = {
   origin: (origin, corsNext) => {
     console.log("Current origin: " + origin);
-    if (whitelist.indexOf(origin) !== -1) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
       corsNext(null, true);
     } else {
       corsNext(createHttpError(400, `Origin ${origin} is not allowed`));
